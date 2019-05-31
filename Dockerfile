@@ -6,7 +6,7 @@ RUN rc-update add php-fpm7 default && apk add curl
 COPY php-fpm.conf /etc/php7/php-fpm.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf.tmpl /etc/nginx/conf.d/default.conf.template
-COPY docker-entrypoint.sh /app/bin/docker-entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 WORKDIR /app
 ENV ENV prod
 RUN echo "<?php var_export(\$_SERVER);?>" > /app/index.php && \
@@ -16,5 +16,5 @@ RUN echo "<?php var_export(\$_SERVER);?>" > /app/index.php && \
 # RUN chgrp -R 0 /etc/php7/php-fpm.d &&  chmod -R g=u /etc/php7/php-fpm.d && \
 #     chgrp -R 0 /etc/nginx/conf.d &&  chmod -R g=u /etc/nginx/conf.d && \
 #     chgrp -R 0 /var/log/php7 &&  chmod -R g=u /var/log/php7/
-ENTRYPOINT ["bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
