@@ -1,7 +1,7 @@
 FROM nginx:1.15-alpine
 RUN apk update && apk upgrade
 RUN apk add openrc php7 php7-fpm php7-opcache && \
-    apk add php7-gd php7-mysqli php7-zlib php7-curl
+    apk add php7-gd php7-mysqli php7-zlib php7-curl  php7-session
 RUN rc-update add php-fpm7 default && apk add curl
 COPY php-fpm.conf /etc/php7/php-fpm.conf
 COPY nginx.conf /etc/nginx/nginx.conf
